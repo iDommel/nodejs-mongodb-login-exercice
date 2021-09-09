@@ -3,7 +3,7 @@ services:
   web:
     image: docker-node-mongo
     build: .
-    command: "node server.js"
+    command: "node api/server.js"
     ports:
       - "3000:3000"
     env_file:

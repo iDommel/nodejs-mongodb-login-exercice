@@ -1,6 +1,6 @@
 version: '3'
 services:
-  web:
+  api:
     image: docker-node-mongo
     build: .
     command: "node api/server.js"

@@ -1,4 +1,4 @@
-import User from '../../models/User'
+import User from '../../models/User/index.js'
 // register
 const postRegister = async (req, res) => {
     try {
@@ -10,7 +10,7 @@ const postRegister = async (req, res) => {
 
         await newUser.save();
         console.log("Created user " + req.body.email);
-        res.status(200).redirect(301, `${process.env.API_BASE_URL}/login`);
+        res.status(200).redirect(301, `localhost:3000/login`);
     } catch (err) {
         res.status(500).send();
     }

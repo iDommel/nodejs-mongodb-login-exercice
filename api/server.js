@@ -17,17 +17,20 @@ await routes(app);
 // db stuff
 
 // DB_URI_ATLAS = "mongodb+srv://iona:123@cluster0.qzcnq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+async function connectToDB() {
+  console.log('in connection');
+  try {
 
-mongoose
-  .connect(process.env.DB_URI_ATLAS)
-  .then(() => {
-    console.log("Listening on port: " + PORT);
-    app.listen(PORT);
-  })
-  .catch((err) => {
-    console.log("error");
-  });
+      const test = await mongoose.connect(process.env.DB_URI_ATLAS)
+      console.log("Listening on port: " + PORT);
+      app.listen(PORT);
 
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+connectToDB();
 
 // Home
 

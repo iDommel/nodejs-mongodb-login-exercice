@@ -1,4 +1,4 @@
-import User from '../../models/User'
+import User from '../../models/User/index.js'
 
 const postLogin = async (req, res) => {
     User.findOne({ email: req.body.email }, async (err, user) => {
@@ -8,7 +8,7 @@ const postLogin = async (req, res) => {
                 (await bcrypt.compare(req.body.password, user.password))
             ) {
                 console.log(req.body.email + " connected.");
-                res.status(200).redirect(301, `${process.env.API_BASE_URL}`);
+                res.status(200).redirect(301, "http://localhost:3000");
             } else {
                 res.send("Invalid email or Password");
             }

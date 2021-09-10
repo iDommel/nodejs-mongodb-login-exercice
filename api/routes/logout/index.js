@@ -1,4 +1,4 @@
-import User from '../../models/User'
+import User from '../../models/User/index.js'
 
 const logout = (req, res, next) => {
     res.send("Logged out.");

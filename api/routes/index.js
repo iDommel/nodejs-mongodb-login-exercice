@@ -3,18 +3,18 @@ import fs from "fs";
 import path from "path";
 
 //TODO: Pourquoi je peux pas utiliser __dirname directement ?
-const __dirname = path.resolve("./api");
+const __dirname = path.resolve("./routes");
 console.log(__dirname);
 
 export default async app => {
     await Promise.all(
         fs
-            .readdirSync("./api")
+            .readdirSync("./routes")
             .filter(routename => routename !== "index.js")
             .map(async routename => {
                 try {
                     const router = Router();
-                    const route = import(`./${routename}`);
+                    const { default: route} = await import(`./${routename}/index.js`);
                     route(router);
                     app.use(`./${routename}`, router);
                 } catch (error) {
@@ -24,5 +24,4 @@ export default async app => {
                 }
             })
     );
-    console.log("Routes initialized");
 }
